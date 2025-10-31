@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeCoding Prompt Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">VibeCoding Prompt Generator</h1>
+    
+    <form id="promptForm" class="space-y-6 bg-white p-6 rounded-lg shadow">
+      <div>
+        <label class="block text-sm font-medium mb-2">Project Title</label>
+        <input type="text" id="title" required 
+          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          placeholder="Company Market Cap Graph">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2">Description (one sentence)</label>
+        <input type="text" id="description" required
+          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          placeholder="Interactive dependency graph showing company market caps">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2">Platform</label>
+        <select id="platform" required
+          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+          <option value="">Select platform...</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-2">Additional Instructions (optional)</label>
+        <textarea id="instructions" rows="4"
+          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          placeholder="- Use react-force-graph for visualization&#10;- Integrate Alpha Vantage API&#10;- Add search/filter functionality"></textarea>
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+        Generate Prompt
+      </button>
+    </form>
+
+    <div id="output" class="hidden mt-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Generated Prompt</h2>
+          <button id="copyBtn" 
+            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            Copy to Clipboard
+          </button>
+        </div>
+        <pre id="promptOutput" class="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
