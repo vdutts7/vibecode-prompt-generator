@@ -4,58 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VibeCoding Prompt Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter Tight', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            monokai: {
+              bg: '#272822',
+              fg: '#F8F8F2',
+              yellow: '#E6DB74',
+              orange: '#FD971F',
+              red: '#F92672',
+              magenta: '#FD5FF0',
+              blue: '#66D9EF',
+              green: '#A6E22E',
+              purple: '#AE81FF',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 min-h-screen p-8">
+<body class="bg-monokai-bg min-h-screen p-8">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold mb-8">VibeCoding Prompt Generator</h1>
+    <h1 class="text-3xl font-bold mb-8 text-monokai-fg">VibeCoding Prompt Generator</h1>
     
-    <form id="promptForm" class="space-y-6 bg-white p-6 rounded-lg shadow">
+    <form id="promptForm" class="space-y-6 bg-[#3E3D32] p-6 rounded-lg border border-monokai-purple/20">
       <div>
-        <label class="block text-sm font-medium mb-2">Project Title</label>
+        <label class="block text-sm font-medium mb-2 text-monokai-blue">Project Title</label>
         <input type="text" id="title" required 
-          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 bg-monokai-bg border border-monokai-purple/30 rounded-lg focus:ring-2 focus:ring-monokai-green focus:border-transparent text-monokai-fg placeholder-monokai-fg/40"
           placeholder="Company Market Cap Graph">
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-2">Description (one sentence)</label>
+        <label class="block text-sm font-medium mb-2 text-monokai-blue">Description (one sentence)</label>
         <input type="text" id="description" required
-          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 bg-monokai-bg border border-monokai-purple/30 rounded-lg focus:ring-2 focus:ring-monokai-green focus:border-transparent text-monokai-fg placeholder-monokai-fg/40"
           placeholder="Interactive dependency graph showing company market caps">
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-2">Platform</label>
+        <label class="block text-sm font-medium mb-2 text-monokai-blue">Platform</label>
         <select id="platform" required
-          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+          class="w-full px-3 py-2 bg-monokai-bg border border-monokai-purple/30 rounded-lg focus:ring-2 focus:ring-monokai-green focus:border-transparent text-monokai-fg">
           <option value="">Select platform...</option>
         </select>
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-2">Additional Instructions (optional)</label>
+        <label class="block text-sm font-medium mb-2 text-monokai-blue">Additional Instructions (optional)</label>
         <textarea id="instructions" rows="4"
-          class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 bg-monokai-bg border border-monokai-purple/30 rounded-lg focus:ring-2 focus:ring-monokai-green focus:border-transparent text-monokai-fg placeholder-monokai-fg/40"
           placeholder="- Use react-force-graph for visualization&#10;- Integrate Alpha Vantage API&#10;- Add search/filter functionality"></textarea>
       </div>
 
       <button type="submit" 
-        class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+        class="w-full bg-monokai-green text-monokai-bg py-3 rounded-lg font-semibold hover:bg-monokai-yellow hover:text-monokai-bg transition active:scale-95">
         Generate Prompt
       </button>
     </form>
 
     <div id="output" class="hidden mt-8">
-      <div class="bg-white p-6 rounded-lg shadow">
+      <div class="bg-[#3E3D32] p-6 rounded-lg border border-monokai-purple/20">
         <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-bold">Generated Prompt</h2>
+          <h2 class="text-xl font-bold text-monokai-fg">Generated Prompt</h2>
           <button id="copyBtn" 
-            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            class="bg-monokai-purple text-monokai-fg px-4 py-2 rounded-lg hover:bg-monokai-magenta transition active:scale-95 font-medium">
             Copy to Clipboard
           </button>
         </div>
-        <pre id="promptOutput" class="bg-gray-50 p-4 rounded-lg overflow-x-auto text-sm"></pre>
+        <pre id="promptOutput" class="bg-monokai-bg p-4 rounded-lg overflow-x-auto text-sm text-monokai-fg border border-monokai-purple/20"></pre>
       </div>
     </div>
   </div>
