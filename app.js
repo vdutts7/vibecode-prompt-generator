@@ -79,19 +79,60 @@ document.getElementById('promptForm').addEventListener('submit', async (e) => {
   document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
 });
 
+// Toast notification
+function showToast(title, description) {
+  // Remove existing toast if any
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+
+  // Create toast
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <svg class="toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <div class="toast-content">
+      <div class="toast-title">${title}</div>
+      <div class="toast-description">${description}</div>
+    </div>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  // Trigger animation
+  setTimeout(() => toast.classList.add('show'), 10);
+  
+  // Remove after 3 seconds
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
 // Copy to clipboard
-document.getElementById('copyBtn').addEventListener('click', () => {
+document.getElementById('copyBtn').addEventListener('click', async () => {
   const text = document.getElementById('promptOutput').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copyBtn');
-    const originalText = btn.textContent;
-    btn.textContent = 'Copied!';
-    btn.classList.remove('bg-green-600', 'hover:bg-green-700');
-    btn.classList.add('bg-green-700');
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.classList.add('bg-green-600', 'hover:bg-green-700');
-      btn.classList.remove('bg-green-700');
-    }, 2000);
-  });
+  
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast('Copied to clipboard', 'Prompt is ready to paste into your platform');
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showToast('Copied to clipboard', 'Prompt is ready to paste into your platform');
+    } catch (err) {
+      showToast('Copy failed', 'Please manually select and copy the text');
+    }
+    document.body.removeChild(textArea);
+  }
 });
