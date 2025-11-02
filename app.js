@@ -63,9 +63,10 @@ function slugify(text) {
     .replace(/^-+|-+$/g, '');
 }
 
-// Load template
-async function loadTemplate() {
-  const response = await fetch('./template.md');
+// Load template based on form type
+async function loadTemplate(isExisting = false) {
+  const templateFile = isExisting ? './template-existing-app.md' : './template-new-app.md';
+  const response = await fetch(templateFile);
   return await response.text();
 }
 
@@ -85,7 +86,7 @@ async function generatePrompt(formId) {
   const shortName = title.length > 12 ? title.substring(0, 12) : title;
   const tagline = description.split('.')[0];
   
-  let template = await loadTemplate();
+  let template = await loadTemplate(isExisting);
   
   // Replace variables
   template = template
