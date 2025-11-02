@@ -73,9 +73,8 @@ Build a **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
 ---
 
 ## 🔒 Data & Implementation Standards
-
 ### Real Data Requirement
-**CRITICAL**: This app must use real data sources - mock data is strictly prohibited.
+**CRITICAL**: If app is dependent on data at its core: then app must use real data sources - mock data is strictly prohibited.
 
 **Data Source Selection:**
 - **Complex Apps** (auth, multi-user, real-time sync, server-side data):
@@ -580,7 +579,7 @@ export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
 4. **Homepage**: `{{DEPLOYMENT_URL}}`
 5. **Banner**: 1280×640px image showcasing the app
 
-### README.md Template
+### README.md (template)
 ```markdown
 # {{PROJECT_TITLE}}
 
@@ -595,13 +594,6 @@ export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
 - Feature 2
 - Feature 3
 
-## 🛠️ Tech Stack
-
-- React + TypeScript
-- TailwindCSS
-- Lucide Icons
-- Vite
-
 ## 📸 Screenshot
 
 ![App Screenshot](./public/og-image.png)
@@ -609,16 +601,9 @@ export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
 ## 🔗 Links
 
 - **Live Demo**: [{{DEPLOYMENT_URL}}]({{DEPLOYMENT_URL}})
-- **GitHub**: [vdutts7](https://github.com/vdutts7)
-- **Twitter**: [@vdutts7](https://x.com/vdutts7)
+- **GitHub**: [GitHub](https://github.com/vdutts7)
+- **Twitter**: [X](https://x.com/vdutts7)
 
-## 📝 License
-
-MIT
-
----
-
-Built with ❤️ using {{PLATFORM_NAME}}
 ```
 
 ---
@@ -701,8 +686,6 @@ Before deploying, verify:
 
 ### Social Links
 - [ ] Footer with GitHub/Twitter links implemented
-- [ ] Links point to vdutts7 accounts
-- [ ] "one app every day" tagline present
 
 ---
 
@@ -721,9 +704,3 @@ Before deploying, verify:
 - **TailwindCSS**: https://tailwindcss.com
 - **Inter Tight Font**: https://fonts.google.com/specimen/Inter+Tight
 - **Core Web Vitals**: https://web.dev/vitals
-
----
-
-**Template Version**: 1.1  
-**Last Updated**: 2025-10-31  
-**Maintained by**: [@vdutts7](https://github.com/vdutts7)
