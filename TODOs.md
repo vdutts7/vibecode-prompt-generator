@@ -4,4 +4,5 @@
 - make it follow the template.md (ironic, right?)
     - PWA
     - shadcn/ui
+    - favicon
     - etc

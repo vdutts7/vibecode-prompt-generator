@@ -4,16 +4,18 @@ const existingAppTab = document.getElementById('existingAppTab');
 const newAppForm = document.getElementById('newAppForm');
 const existingAppForm = document.getElementById('existingAppForm');
 
+newAppTab.setAttribute('data-active', 'true');
+
 newAppTab.addEventListener('click', () => {
-  newAppTab.classList.add('active');
-  existingAppTab.classList.remove('active');
+  newAppTab.setAttribute('data-active', 'true');
+  existingAppTab.setAttribute('data-active', 'false');
   newAppForm.classList.remove('hidden');
   existingAppForm.classList.add('hidden');
 });
 
 existingAppTab.addEventListener('click', () => {
-  existingAppTab.classList.add('active');
-  newAppTab.classList.remove('active');
+  existingAppTab.setAttribute('data-active', 'true');
+  newAppTab.setAttribute('data-active', 'false');
   existingAppForm.classList.remove('hidden');
   newAppForm.classList.add('hidden');
 });

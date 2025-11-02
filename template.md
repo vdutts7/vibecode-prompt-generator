@@ -12,9 +12,10 @@ platform:
 branding:
   favicon: "lucide-icon-matching-topic"
   url_pattern: "{{slugified-title}}-vd7.{{platform-domain}}"
-  theme: "monokai"
-  font: "Inter Tight"
-  font_url: "https://fonts.google.com/share?selection.family=Inter+Tight:ital,wght@0,100..900;1,100..900"
+  design_system: "shadcn/ui"
+  theme: "zinc" # Options: zinc, slate, stone, gray, neutral, red, rose, orange, green, blue, yellow, violet
+  font: "Inter"
+  font_url: "https://fonts.google.com/specimen/Inter"
 
 github:
   repo_name: "{{slugified-title}}"
@@ -315,18 +316,123 @@ const url = env.api.url;
 - **Component Library**: shadcn/ui for accessibility
 - **Icons**: Lucide React - prioritize icons over text for better UX
 
-### Color Palette (Monokai-inspired)
+### shadcn/ui Design System Setup
+
+**CRITICAL**: Use shadcn/ui design system with CSS variables for theming.
+
+Create `app/globals.css` (or `src/index.css`):
+
 ```css
-:root {
-  --monokai-bg: #272822;
-  --monokai-fg: #F8F8F2;
-  --monokai-yellow: #E6DB74;
-  --monokai-orange: #FD971F;
-  --monokai-red: #F92672;
-  --monokai-magenta: #FD5FF0;
-  --monokai-blue: #66D9EF;
-  --monokai-green: #A6E22E;
-  --monokai-purple: #AE81FF;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+```
+
+### Tailwind Configuration
+
+Update `tailwind.config.js`:
+
+```js
+module.exports = {
+  darkMode: ["class"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))'
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))'
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        }
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      }
+    }
+  }
 }
 ```
 
@@ -335,14 +441,29 @@ const url = env.api.url;
 <!-- Add to index.html <head> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-```css
-/* Add to global CSS */
-body {
-  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
+### Component Styling Pattern
+
+**ALWAYS use semantic tokens, NEVER hardcoded colors:**
+
+```tsx
+// ✅ CORRECT
+<button className="bg-primary text-primary-foreground hover:bg-primary/90">
+  Click me
+</button>
+
+<input className="bg-background border-input focus:ring-ring" />
+
+<div className="bg-card text-card-foreground border-border">
+  Card content
+</div>
+
+// ❌ WRONG
+<button className="bg-black text-white">Click me</button>
+<input className="bg-white border-gray-300" />
+<div className="bg-white text-gray-900 border-gray-200">Card</div>
 ```
 
 ### Icon Usage Guidelines
