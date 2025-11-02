@@ -28,10 +28,6 @@ seo:
 
 ## 🎯 Project Overview
 
-Transform existing app **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
-
----
-
 ## 🖼️ Visual Assets Generation
 
 **CRITICAL**: Generate and place these assets in the project root directory to match vibecoded branding:
