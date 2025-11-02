@@ -1,58 +1,32 @@
 ---
-# VibeCoding Standardized Prompt Template
-# Version: 1.1
-# Last Updated: 2025-10-31
 
-# ============================================
-# PROJECT CONFIGURATION (Fill these in)
-# ============================================
 project:
-  title: "{{PROJECT_TITLE}}"  # e.g., "Daily Task Master"
-  description: "{{PROJECT_DESCRIPTION}}"  # One sentence description
+  title: "{{PROJECT_TITLE}}"
+  description: "{{PROJECT_DESCRIPTION}}"
   
-# ============================================
-# PLATFORM SETTINGS (Select one)
-# ============================================
 platform:
-  name: "{{PLATFORM_NAME}}"  # lovable, v0, bolt, blink, base44, emergent, etc.
-  domain: "{{PLATFORM_DOMAIN}}"  # Auto-filled from platforms.json
-  topic: "{{PLATFORM_TOPIC}}"  # Auto-filled from platforms.json
+  name: "{{PLATFORM_NAME}}"
+  domain: "{{PLATFORM_DOMAIN}}"
+  topic: "{{PLATFORM_TOPIC}}"
 
-# ============================================
-# BRANDING (Standardized across all projects)
-# ============================================
 branding:
-  favicon: "lucide-icon-matching-topic"  # Auto-select Lucide icon based on project topic
+  favicon: "lucide-icon-matching-topic"
   url_pattern: "{{slugified-title}}-vd7.{{platform-domain}}"
   theme: "monokai"
   font: "Inter Tight"
   font_url: "https://fonts.google.com/share?selection.family=Inter+Tight:ital,wght@0,100..900;1,100..900"
 
-# ============================================
-# GITHUB METADATA
-# ============================================
 github:
-  repo_name: "{{slugified-title}}"  # Lowercase with hyphens
-  description: "{{PROJECT_DESCRIPTION}}"
+  repo_name: "{{slugified-title}}"
   topics: 
-    - "{{PLATFORM_TOPIC}}"  # e.g., lovable-app, bolt-app
-    - "pwa"
-    - "react"
-    - "typescript"
-    - "tailwindcss"
+    - "{{PLATFORM_TOPIC}}"
   banner_dimensions: "1280x640"
   homepage_url: "{{DEPLOYMENT_URL}}"
 
-# ============================================
-# SOCIAL LINKS (Consistent across all projects)
-# ============================================
 social:
   github: "vdutts7"
   twitter: "vdutts7"
 
-# ============================================
-# SEO & SOCIAL SHARING
-# ============================================
 seo:
   og_image_dimensions: "1200x630"
   twitter_card: "summary_large_image"

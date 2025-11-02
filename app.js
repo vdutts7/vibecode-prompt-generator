@@ -7,7 +7,7 @@ const platforms = [
   { id: "bolt", name: "Bolt", domain: "bolt.new", topic: "bolt-app" },
   { id: "mgx", name: "MGX", domain: "mgx.dev", topic: "mgx-app" },
   { id: "leap", name: "Leap", domain: "leap.new", topic: "leap-app" },
-  { id: "createanything", name: "CreateAnything", domain: "createanything.com", topic: "createanything-app" },
+  { id: "createanything", name: "CreateAnything", domain: "createanything.com", topic: "anything-app" },
   { id: "rork", name: "Rork", domain: "rork.app", topic: "rork-app" },
   { id: "orchids", name: "Orchids", domain: "orchids.app", topic: "orchids-app" },
   { id: "libra", name: "Libra", domain: "libra.dev", topic: "libra-app" },
