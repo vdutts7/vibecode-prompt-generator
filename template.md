@@ -47,7 +47,7 @@ Build a **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
 - **Build Tool**: Vite
 - **Styling**: TailwindCSS 3.4+
 - **Icons**: Lucide React (NOT Font Awesome, NOT Heroicons)
-- **Component Primitives**: Radix UI (NOT shadcn/ui - it's overused)
+- **Component Primitives**: shadcn/ui 
 - **State Management**: React Query (TanStack Query) for server state
 - **Routing**: React Router DOM v6
 
@@ -312,7 +312,7 @@ const url = env.api.url;
 - **Design Philosophy**: Apple/Vercel-inspired - simple, functional, clean, intuitive
 - **Theme**: Monokai color scheme
 - **Typography**: Inter Tight font family (all weights 100-900)
-- **Component Library**: Radix UI primitives for accessibility
+- **Component Library**: shadcn/ui for accessibility
 - **Icons**: Lucide React - prioritize icons over text for better UX
 
 ### Color Palette (Monokai-inspired)
@@ -700,7 +700,7 @@ Before deploying, verify:
 - **Supabase**: https://supabase.com (Database, Auth, Storage)
 - **Supabase Docs**: https://supabase.com/docs
 - **Lucide Icons**: https://lucide.dev
-- **Radix UI**: https://www.radix-ui.com
+- **shadcn/ui**: https://ui.shadcn.com
 - **TailwindCSS**: https://tailwindcss.com
 - **Inter Tight Font**: https://fonts.google.com/specimen/Inter+Tight
 - **Core Web Vitals**: https://web.dev/vitals
