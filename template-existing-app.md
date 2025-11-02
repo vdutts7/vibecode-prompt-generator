@@ -28,6 +28,8 @@ seo:
 
 ## 🎯 Project Overview
 
+Keep everything about app UI, functionality the same. Simply change the branding, metadata, and other configurations mentioned below.
+
 ## 🖼️ Visual Assets Generation
 
 **CRITICAL**: Generate and place these assets in the project root directory to match vibecoded branding:
