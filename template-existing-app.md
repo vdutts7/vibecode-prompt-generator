@@ -24,11 +24,11 @@ seo:
   twitter_card: "summary_large_image"
 ---
 
-# Branding Instructions for {{PROJECT_TITLE}}
+# Instructions
 
 ## 🎯 Project Overview
 
-Keep everything about app UI, functionality the same. Simply change the branding, metadata, and other configurations mentioned below.
+**Keep EVERYTHING about app UI, functionality the same. Surgically change the things mentioned below.**
 
 ## 🖼️ Visual Assets Generation
 
@@ -43,11 +43,10 @@ Keep everything about app UI, functionality the same. Simply change the branding
 
 ### AI Generation Commands:
 ```
-Generate the following visual assets for {{PROJECT_TITLE}}:
+Generate the following visual assets:
 
 1. FAVICON (32x32px):
-   - Simple, recognizable icon related to "{{PROJECT_DESCRIPTION}}"
-   - Use {{PROJECT_TITLE}} as inspiration
+   - Simple, recognizable icon related to site's topic
    - Clean, minimal design that works at small size
    - shadcn/ui aesthetic (modern, clean)
    - Save as: public/favicon.ico
@@ -130,49 +129,6 @@ Add to `index.html`:
 
 ---
 
-## ♿ Accessibility Standards
-
-### ARIA Requirements
-- All interactive elements MUST have `aria-label` or visible text
-- Form inputs MUST have associated labels
-- Images MUST have descriptive `alt` text
-- Use semantic HTML (`<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`)
-
-### Keyboard Navigation
-- All interactive elements accessible via Tab key
-- Focus indicators visible and clear
-- Skip-to-content link for screen readers
-
-### Example Accessible Button
-```tsx
-<button
-  className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all active:scale-95"
-  onClick={handleClick}
-  aria-label="Descriptive action name"
->
-  <IconName className="h-5 w-5" />
-</button>
-```
-
----
-
-## 🚀 Performance & Core Web Vitals
-
-### Target Metrics
-- **LCP (Largest Contentful Paint)**: < 2.5s
-- **FID (First Input Delay)**: < 100ms
-- **CLS (Cumulative Layout Shift)**: < 0.1
-- **Lighthouse Score**: > 95 (all categories)
-
-### Optimization Techniques
-1. **Image Optimization**: Use WebP format, lazy loading
-2. **Code Splitting**: Dynamic imports for routes
-3. **Font Loading**: `font-display: swap` in CSS
-4. **Minimize Bundle**: Tree-shaking, remove unused dependencies
-5. **Caching**: Service worker for offline support
-
----
-
 ## 🔍 SEO & Social Sharing
 
 ### Meta Tags Template
@@ -222,7 +178,7 @@ Sitemap: {{DEPLOYMENT_URL}}/sitemap.xml
 
 ---
 
-## 🎭 Reusable Component: Social Links Footer
+## 🎭 Social Links Footer
 
 **CRITICAL**: Copy this exact implementation for consistent branding:
 
@@ -296,7 +252,7 @@ import { Github } from "lucide-react";
 
 ---
 
-## ✅ Pre-Deployment Checklist
+## ✅ Pre-Deployment hecklist
 
 Before deploying, verify:
 
@@ -304,19 +260,6 @@ Before deploying, verify:
 - [ ] NO mock data arrays or hardcoded placeholders
 - [ ] NO setTimeout API simulations
 - [ ] NO TODO comments or stub functions
-
-### Accessibility
-- [ ] All buttons have aria-labels
-- [ ] Images have alt text
-- [ ] Semantic HTML used
-- [ ] Keyboard navigation works
-- [ ] Focus indicators visible
-
-### Performance
-- [ ] Lighthouse score > 95
-- [ ] Images optimized (WebP, lazy loading)
-- [ ] Bundle size reasonable (< 500KB gzipped)
-- [ ] No layout shifts (CLS < 0.1)
 
 ### SEO & Social
 - [ ] Meta tags complete (title, description, OG, Twitter)
@@ -328,8 +271,7 @@ Before deploying, verify:
 ### PWA
 - [ ] manifest.json configured
 - [ ] Icons generated (192px, 512px)
-- [ ] Theme color set
-- [ ] Works offline (if applicable)
+- [ ] Works offline
 
 ### GitHub
 - [ ] Repo name matches slug
