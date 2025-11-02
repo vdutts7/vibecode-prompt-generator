@@ -1,3 +1,23 @@
+// Tab switching
+const newAppTab = document.getElementById('newAppTab');
+const existingAppTab = document.getElementById('existingAppTab');
+const newAppForm = document.getElementById('newAppForm');
+const existingAppForm = document.getElementById('existingAppForm');
+
+newAppTab.addEventListener('click', () => {
+  newAppTab.classList.add('active');
+  existingAppTab.classList.remove('active');
+  newAppForm.classList.remove('hidden');
+  existingAppForm.classList.add('hidden');
+});
+
+existingAppTab.addEventListener('click', () => {
+  existingAppTab.classList.add('active');
+  newAppTab.classList.remove('active');
+  existingAppForm.classList.remove('hidden');
+  newAppForm.classList.add('hidden');
+});
+
 // Load platforms
 const platforms = [
   { id: "lovable", name: "Lovable", domain: "lovable.app", topic: "lovable-app" },
@@ -18,13 +38,19 @@ const platforms = [
   { id: "builderio", name: "Builder.io", domain: "builder.io", topic: "builderio-app" }
 ];
 
-// Populate platform dropdown
-const platformSelect = document.getElementById('platform');
-platforms.forEach(p => {
-  const option = document.createElement('option');
-  option.value = p.id;
-  option.textContent = `${p.name} (${p.domain})`;
-  platformSelect.appendChild(option);
+// Populate platform dropdowns
+const platformSelects = [
+  document.getElementById('platform'),
+  document.getElementById('existingPlatform')
+];
+
+platformSelects.forEach(select => {
+  platforms.forEach(p => {
+    const option = document.createElement('option');
+    option.value = p.id;
+    option.textContent = `${p.name} (${p.domain})`;
+    select.appendChild(option);
+  });
 });
 
 // Slugify function
@@ -41,14 +67,15 @@ async function loadTemplate() {
   return await response.text();
 }
 
-// Generate prompt
-document.getElementById('promptForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Generate prompt function
+async function generatePrompt(formId) {
+  const isExisting = formId === 'existingAppForm';
+  const prefix = isExisting ? 'existing' : '';
   
-  const title = document.getElementById('title').value;
-  const description = document.getElementById('description').value;
-  const platformId = document.getElementById('platform').value;
-  const instructions = document.getElementById('instructions').value;
+  const title = document.getElementById(prefix + (prefix ? 'T' : 't') + 'itle').value;
+  const description = document.getElementById(prefix + (prefix ? 'D' : 'd') + 'escription').value;
+  const platformId = document.getElementById(prefix + (prefix ? 'P' : 'p') + 'latform').value;
+  const instructions = document.getElementById(prefix + (prefix ? 'I' : 'i') + 'nstructions').value;
   
   const platform = platforms.find(p => p.id === platformId);
   const slug = slugify(title);
@@ -77,6 +104,17 @@ document.getElementById('promptForm').addEventListener('submit', async (e) => {
   
   // Scroll to output
   document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Form submit handlers
+document.getElementById('newAppForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  await generatePrompt('newAppForm');
+});
+
+document.getElementById('existingAppForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  await generatePrompt('existingAppForm');
 });
 
 // Toast notification

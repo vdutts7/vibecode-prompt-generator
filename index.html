@@ -83,14 +83,40 @@
       font-size: 0.875rem;
       color: #6b7280;
     }
+    
+    /* Tab styles */
+    .tab-button {
+      border-bottom-color: transparent;
+      color: #6b7280;
+    }
+    
+    .tab-button:hover {
+      color: #111827;
+    }
+    
+    .tab-button.active {
+      border-bottom-color: #111827;
+      color: #111827;
+    }
   </style>
 </head>
 <body class="bg-white min-h-screen p-8">
   <div class="max-w-4xl mx-auto">
     <h1 class="text-6xl font-bold mb-4 text-black leading-tight">Generate prompts, <br>don't write</h1>
-    <p class="text-xl text-gray-600 mb-12 max-w-2xl">Fill in the details, and the generator will create a standardized prompt for any vibecoding platform - in real time.</p>
+    <p class="text-xl text-gray-600 mb-8 max-w-2xl">Fill in the details, and the generator will create a standardized prompt for any vibecoding platform - in real time.</p>
     
-    <form id="promptForm" class="space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+    <!-- Tabs -->
+    <div class="flex gap-2 mb-8 border-b border-gray-200">
+      <button id="newAppTab" class="tab-button active px-6 py-3 font-semibold text-sm transition-colors border-b-2">
+        New App
+      </button>
+      <button id="existingAppTab" class="tab-button px-6 py-3 font-semibold text-sm transition-colors border-b-2">
+        Existing App
+      </button>
+    </div>
+    
+    <!-- New App Form -->
+    <form id="newAppForm" class="tab-content space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
       <div>
         <label class="block text-sm font-semibold mb-2 text-gray-900">Project Title</label>
         <input type="text" id="title" required 
@@ -116,6 +142,43 @@
       <div>
         <label class="block text-sm font-semibold mb-2 text-gray-900">Additional Instructions (optional)</label>
         <textarea id="instructions" rows="4"
+          class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent text-gray-900 placeholder-gray-400"
+          placeholder="- Use react-force-graph for visualization&#10;- Integrate Alpha Vantage API&#10;- Add search/filter functionality"></textarea>
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition active:scale-[0.98]">
+        Generate Prompt
+      </button>
+    </form>
+
+    <!-- Existing App Form -->
+    <form id="existingAppForm" class="tab-content hidden space-y-6 bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <div>
+        <label class="block text-sm font-semibold mb-2 text-gray-900">Project Title</label>
+        <input type="text" id="existingTitle" required 
+          class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent text-gray-900 placeholder-gray-400"
+          placeholder="Company Market Cap Graph">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2 text-gray-900">Description (one sentence)</label>
+        <input type="text" id="existingDescription" required
+          class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent text-gray-900 placeholder-gray-400"
+          placeholder="Interactive dependency graph showing company market caps">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2 text-gray-900">Platform</label>
+        <select id="existingPlatform" required
+          class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent text-gray-900">
+          <option value="">Select platform...</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2 text-gray-900">Additional Instructions (optional)</label>
+        <textarea id="existingInstructions" rows="4"
           class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent text-gray-900 placeholder-gray-400"
           placeholder="- Use react-force-graph for visualization&#10;- Integrate Alpha Vantage API&#10;- Add search/filter functionality"></textarea>
       </div>
