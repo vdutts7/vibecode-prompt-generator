@@ -1,6 +1,4 @@
 ---
-# Template for EXISTING APPS (molding to vibecoded branding)
-
 project:
   title: "{{PROJECT_TITLE}}"
   description: "{{PROJECT_DESCRIPTION}}"

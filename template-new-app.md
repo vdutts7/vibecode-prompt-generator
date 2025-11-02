@@ -1,6 +1,4 @@
 ---
-# Template for NEW APPS (building from scratch)
-
 project:
   title: "{{PROJECT_TITLE}}"
   description: "{{PROJECT_DESCRIPTION}}"
