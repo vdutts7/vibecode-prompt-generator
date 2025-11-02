@@ -1,5 +1,3 @@
----
-
 project:
   title: "{{PROJECT_TITLE}}"
   description: "{{PROJECT_DESCRIPTION}}"
@@ -13,7 +11,7 @@ branding:
   favicon: "lucide-icon-matching-topic"
   url_pattern: "{{slugified-title}}-vd7.{{platform-domain}}"
   design_system: "shadcn/ui"
-  theme: "zinc" # Options: zinc, slate, stone, gray, neutral, red, rose, orange, green, blue, yellow, violet
+  theme: "auto-select" # Intelligently chosen based on app purpose (see theme selection guide below)
   font: "Inter"
   font_url: "https://fonts.google.com/specimen/Inter"
 
@@ -443,6 +441,54 @@ module.exports = {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
+
+### Theme Selection Guide
+
+**CRITICAL**: Choose the theme color that best matches the app's purpose and domain.
+
+**Selection Logic:**
+
+Based on **{{PROJECT_TITLE}}** and **{{PROJECT_DESCRIPTION}}**, select ONE theme:
+
+- **Zinc** (default neutral): General-purpose apps, dashboards, admin panels, productivity tools, SaaS platforms
+- **Slate**: Developer tools, code editors, technical documentation, API platforms
+- **Stone**: Content management, blogs, publishing platforms, reading apps
+- **Gray**: Minimal apps, calculators, converters, utility tools
+- **Neutral**: Business apps, CRM, analytics, professional tools
+
+- **Red**: Alerts, monitoring, security, emergency services, critical systems
+- **Rose**: Dating apps, social platforms, creative tools, design apps
+- **Orange**: Food delivery, restaurants, energy/fitness, enthusiasm-focused apps
+- **Green**: Finance, health, eco/sustainability, growth/success apps, money management
+- **Blue**: Communication, productivity, trust-focused apps, corporate tools, social networks
+- **Yellow**: Learning platforms, education, optimism-focused, note-taking, highlights
+- **Violet**: Creative tools, music apps, luxury brands, premium services, meditation
+
+**Implementation:**
+
+Add the selected theme class to `<html>` tag:
+
+```html
+<!-- For Green theme (finance/health app) -->
+<html lang="en" class="theme-green">
+
+<!-- For Blue theme (productivity app) -->
+<html lang="en" class="theme-blue">
+
+<!-- For default Zinc (general app) -->
+<html lang="en">
+```
+
+**Example Selections:**
+- "Budget Tracker" → **Green** (finance)
+- "Task Manager" → **Blue** (productivity)
+- "Recipe Finder" → **Orange** (food)
+- "Meditation Timer" → **Violet** (wellness/calm)
+- "Code Snippet Manager" → **Slate** (developer tool)
+- "Habit Tracker" → **Green** (health/growth)
+- "Dating App" → **Rose** (social/romance)
+- "Learning Platform" → **Yellow** (education)
+- "Admin Dashboard" → **Zinc** (neutral/professional)
 
 ### Component Styling Pattern
 
