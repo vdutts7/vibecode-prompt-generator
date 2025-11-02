@@ -517,10 +517,6 @@ Sitemap: {{DEPLOYMENT_URL}}/sitemap.xml
           </svg>
         </button>
       </div>
-      
-      <p className="text-gray-500 text-[13px] font-medium">
-        one app every day
-      </p>
     </div>
   </div>
 </footer>
