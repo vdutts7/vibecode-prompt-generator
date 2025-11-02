@@ -42,6 +42,61 @@ Build a **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
 
 ---
 
+## 🖼️ Visual Assets Generation
+
+**CRITICAL**: Generate and place these assets in the project root directory before deployment:
+
+### Required Files to Generate:
+1. `public/favicon.ico` - 32x32px favicon
+2. `public/favicon.svg` - SVG favicon for modern browsers
+3. `public/og-image.png` - 1200x630px Open Graph image
+4. `public/github-banner.png` - 1280x640px GitHub repository banner
+5. `public/twitter-card.png` - 1200x630px Twitter card image
+
+### AI Generation Commands:
+```
+Generate the following visual assets for {{PROJECT_TITLE}}:
+
+1. FAVICON (32x32px):
+   - Simple, recognizable icon related to "{{PROJECT_DESCRIPTION}}"
+   - Use {{PROJECT_TITLE}} as inspiration
+   - Clean, minimal design that works at small size
+   - Save as: public/favicon.ico
+
+2. OPEN GRAPH IMAGE (1200x630px):
+   - Title: "{{PROJECT_TITLE}}"
+   - Subtitle: "{{PROJECT_DESCRIPTION}}"
+   - Modern, professional design with shadcn/ui aesthetic
+   - Include app name prominently
+   - Save as: public/og-image.png
+
+3. GITHUB BANNER (1280x640px):
+   - "{{PROJECT_TITLE}}" - {{PROJECT_DESCRIPTION}}
+   - Professional banner for GitHub repository
+   - Include GitHub/tech aesthetic
+   - Save as: public/github-banner.png
+
+4. TWITTER CARD (1200x630px):
+   - "{{PROJECT_TITLE}}" - {{PROJECT_DESCRIPTION}}
+   - Optimized for Twitter sharing
+   - Eye-catching design
+   - Save as: public/twitter-card.png
+```
+
+### File Structure After Generation:
+```
+public/
+├── favicon.ico          # 32x32px favicon
+├── favicon.svg          # SVG favicon
+├── og-image.png         # 1200x630px OG image
+├── github-banner.png    # 1280x640px GitHub banner
+└── twitter-card.png     # 1200x630px Twitter card
+```
+
+---
+
+---
+
 ## 🏗️ Technical Stack
 
 ### Core Technologies

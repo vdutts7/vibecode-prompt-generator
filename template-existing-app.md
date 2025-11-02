@@ -10,14 +10,6 @@ platform:
   domain: "{{PLATFORM_DOMAIN}}"
   topic: "{{PLATFORM_TOPIC}}"
 
-branding:
-  favicon: "lucide-icon-matching-topic"
-  url_pattern: "{{slugified-title}}-vd7.{{platform-domain}}"
-  design_system: "shadcn/ui"
-  theme: "auto-select" # Intelligently chosen based on app purpose (see theme selection guide below)
-  font: "Inter"
-  font_url: "https://fonts.google.com/specimen/Inter"
-
 github:
   repo_name: "{{slugified-title}}"
   topics: 
@@ -34,494 +26,70 @@ seo:
   twitter_card: "summary_large_image"
 ---
 
-# Build Instructions for {{PROJECT_TITLE}}
+# Branding Instructions for {{PROJECT_TITLE}}
 
 ## 🎯 Project Overview
 
-Build a **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
+Transform existing app **{{PROJECT_TITLE}}** - {{PROJECT_DESCRIPTION}}
 
 ---
 
-## 🏗️ Technical Stack
+## 🖼️ Visual Assets Generation
 
-### Core Technologies
-- **Framework**: React 18+ with TypeScript
-- **Build Tool**: Vite
-- **Styling**: TailwindCSS 3.4+
-- **Icons**: Lucide React (NOT Font Awesome, NOT Heroicons)
-- **Component Primitives**: shadcn/ui 
-- **State Management**: React Query (TanStack Query) for server state
-- **Routing**: React Router DOM v6
+**CRITICAL**: Generate and place these assets in the project root directory to match vibecoded branding:
 
-### Required Dependencies
-```json
-{
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.1",
-    "@tanstack/react-query": "^5.83.0",
-    "@supabase/supabase-js": "^2.39.0",
-    "lucide-react": "^0.462.0",
-    "tailwind-merge": "^2.6.0",
-    "clsx": "^2.1.1",
-    "class-variance-authority": "^0.7.1"
-  }
-}
+### Required Files to Generate:
+1. `public/favicon.ico` - 32x32px favicon
+2. `public/favicon.svg` - SVG favicon for modern browsers
+3. `public/og-image.png` - 1200x630px Open Graph image
+4. `public/github-banner.png` - 1280x640px GitHub repository banner
+5. `public/twitter-card.png` - 1200x630px Twitter card image
+
+### AI Generation Commands:
+```
+Generate the following visual assets for {{PROJECT_TITLE}}:
+
+1. FAVICON (32x32px):
+   - Simple, recognizable icon related to "{{PROJECT_DESCRIPTION}}"
+   - Use {{PROJECT_TITLE}} as inspiration
+   - Clean, minimal design that works at small size
+   - shadcn/ui aesthetic (modern, clean)
+   - Save as: public/favicon.ico
+
+2. OPEN GRAPH IMAGE (1200x630px):
+   - Title: "{{PROJECT_TITLE}}"
+   - Subtitle: "{{PROJECT_DESCRIPTION}}"
+   - Modern, professional design with shadcn/ui aesthetic
+   - Include app name prominently
+   - Save as: public/og-image.png
+
+3. GITHUB BANNER (1280x640px):
+   - "{{PROJECT_TITLE}}" - {{PROJECT_DESCRIPTION}}
+   - Professional banner for GitHub repository
+   - Include GitHub/tech aesthetic with shadcn/ui styling
+   - Save as: public/github-banner.png
+
+4. TWITTER CARD (1200x630px):
+   - "{{PROJECT_TITLE}}" - {{PROJECT_DESCRIPTION}}"
+   - Optimized for Twitter sharing
+   - Eye-catching design with shadcn/ui colors
+   - Save as: public/twitter-card.png
 ```
 
-**Note**: Only include `@supabase/supabase-js` if the app requires database, auth, or server-side data. For simple client-side apps, use localStorage instead.
-
----
-
-## 🔒 Data & Implementation Standards
-### Real Data Requirement
-**CRITICAL**: If app is dependent on data at its core: then app must use real data sources - mock data is strictly prohibited.
-
-**Data Source Selection:**
-- **Complex Apps** (auth, multi-user, real-time sync, server-side data):
-  - Use **Supabase** (PostgreSQL + Auth + Storage + Realtime)
-  - Install: `npm install @supabase/supabase-js`
-  - Free tier: 500MB database, 50MB storage, 2GB bandwidth
-  - Setup time: < 5 minutes with user-provided credentials
-
-- **Simple Apps** (calculators, tools, single-user, client-side only):
-  - Use **localStorage** or **IndexedDB** for persistence
-  - No external dependencies required
-  - Works offline by default
-
-**PROHIBITED:**
-- ❌ Mock data arrays (e.g., `const mockUsers = [...]`)
-- ❌ Hardcoded placeholder data
-- ❌ `setTimeout()` to simulate API calls
-- ❌ Fake data generators
-
-### Production-Ready Implementation
-**NO SHORTCUTS**: Implement all features fully - this is production code, not a prototype.
-
-**PROHIBITED:**
-- ❌ `// TODO: Implement later` comments
-- ❌ Stub functions that return empty values
-- ❌ Placeholder implementations
-- ❌ Mock API responses
-- ❌ Functions that don't actually work
-
-**ALLOWED:**
-- ✅ Loading states and skeleton UIs (real UX need)
-- ✅ Error boundaries and error handling (real UX need)
-- ✅ Empty state messaging (e.g., "No items yet. Create your first item!")
-- ✅ Onboarding example data (clearly labeled as "demo" or "example")
-
-**Implementation Pattern:**
-```typescript
-// ❌ WRONG - Mock data
-const fetchUsers = async () => {
-  return [{ id: 1, name: "Mock User" }];
-};
-
-// ✅ CORRECT - Real implementation
-const fetchUsers = async () => {
-  const { data, error } = await supabase
-    .from('users')
-    .select('*');
-  
-  if (error) throw error;
-  return data;
-};
+### File Structure After Generation:
 ```
-
-### Database & Authentication Setup
-
-**Primary Solution: Supabase**
-
-1. **Installation:**
-```bash
-npm install @supabase/supabase-js
-```
-
-2. **Configuration Structure:**
-```
-src/config/
-  ├── env.ts          # Type-safe environment variables
-  ├── constants.ts    # Non-secret configuration
-  └── supabase.ts     # Supabase client initialization
-
-.env.example          # Template for required variables
-.env.local            # Actual secrets (gitignored)
-```
-
-3. **Environment Setup:**
-
-Create `.env.example`:
-```bash
-# Supabase Configuration (User will provide these)
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key-here
-
-# App Configuration
-VITE_APP_NAME={{PROJECT_TITLE}}
-VITE_APP_URL={{DEPLOYMENT_URL}}
-```
-
-Create `src/config/env.ts`:
-```typescript
-// Centralized, type-safe environment variable access
-export const env = {
-  supabase: {
-    url: import.meta.env.VITE_SUPABASE_URL || '',
-    anonKey: import.meta.env.VITE_SUPABASE_ANON_KEY || '',
-  },
-  app: {
-    name: import.meta.env.VITE_APP_NAME || '{{PROJECT_TITLE}}',
-    url: import.meta.env.VITE_APP_URL || 'http://localhost:5173',
-  },
-} as const;
-
-// Runtime validation - fail fast if required vars missing
-if (!env.supabase.url || !env.supabase.anonKey) {
-  throw new Error(
-    'Missing Supabase credentials. Check .env.local and ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.'
-  );
-}
-```
-
-Create `src/config/constants.ts`:
-```typescript
-// Non-secret configuration (magic numbers, app constants)
-export const APP_CONFIG = {
-  // File upload limits
-  maxFileSize: 5 * 1024 * 1024, // 5MB
-  allowedFileTypes: ['image/jpeg', 'image/png', 'image/webp'],
-  
-  // Pagination
-  itemsPerPage: 20,
-  maxItemsPerPage: 100,
-  
-  // UI behavior
-  debounceMs: 300,
-  toastDuration: 3000,
-  
-  // Caching
-  cacheTimeMs: 5 * 60 * 1000, // 5 minutes
-  staleTimeMs: 60 * 1000, // 1 minute
-} as const;
-```
-
-Create `src/config/supabase.ts`:
-```typescript
-import { createClient } from '@supabase/supabase-js';
-import { env } from './env';
-
-// Initialize Supabase client
-export const supabase = createClient(
-  env.supabase.url,
-  env.supabase.anonKey,
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-    },
-  }
-);
-
-// Database types (auto-generated from Supabase)
-export type Database = {
-  // Add your database types here
-  // Or generate with: npx supabase gen types typescript
-};
-```
-
-4. **Authentication Pattern:**
-```typescript
-// src/hooks/useAuth.ts
-import { useEffect, useState } from 'react';
-import { supabase } from '@/config/supabase';
-import type { User } from '@supabase/supabase-js';
-
-export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  return { user, loading };
-}
-```
-
-5. **User Instructions:**
-```markdown
-## Setup Instructions
-
-1. Create a Supabase project at https://supabase.com
-2. Copy your project URL and anon key
-3. Create `.env.local` in the project root:
-   ```bash
-   VITE_SUPABASE_URL=your-project-url
-   VITE_SUPABASE_ANON_KEY=your-anon-key
-   ```
-4. Run `npm install`
-5. Run `npm run dev`
-```
-
-### Configuration Management Rules
-
-**Centralization:**
-- ALL configuration must live in `src/config/` directory
-- ALL environment variables accessed through `src/config/env.ts`
-- ALL magic numbers defined in `src/config/constants.ts`
-- ALL service initialization in `src/config/[service].ts`
-
-**Security:**
-- NEVER commit API keys or secrets to git
-- ALWAYS use environment variables for sensitive data
-- ALWAYS include `.env.example` documenting required variables
-- ALWAYS add `.env.local` to `.gitignore`
-- ALWAYS validate required environment variables at runtime
-
-**Pattern:**
-```typescript
-// ❌ WRONG - Hardcoded
-const API_KEY = "sk-1234567890";
-
-// ❌ WRONG - Direct access
-const url = import.meta.env.VITE_API_URL;
-
-// ✅ CORRECT - Centralized, validated
-import { env } from '@/config/env';
-const url = env.api.url;
+public/
+├── favicon.ico          # 32x32px favicon
+├── favicon.svg          # SVG favicon
+├── og-image.png         # 1200x630px OG image
+├── github-banner.png    # 1280x640px GitHub banner
+└── twitter-card.png     # 1200x630px Twitter card
 ```
 
 ---
 
-## 🎨 Design System Standards
-
-### Visual Identity
-- **Design Philosophy**: Apple/Vercel-inspired - simple, functional, clean, intuitive
-- **Theme**: Monokai color scheme
-- **Typography**: Inter Tight font family (all weights 100-900)
-- **Component Library**: shadcn/ui for accessibility
-- **Icons**: Lucide React - prioritize icons over text for better UX
-
-### shadcn/ui Design System Setup
-
-**CRITICAL**: Use shadcn/ui design system with CSS variables for theming.
-
-Create `app/globals.css` (or `src/index.css`):
-
-```css
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-}
-```
-
-### Tailwind Configuration
-
-Update `tailwind.config.js`:
-
-```js
-module.exports = {
-  darkMode: ["class"],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))'
-        },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
-        }
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      }
-    }
-  }
-}
-```
-
-### Typography Setup
-```html
-<!-- Add to index.html <head> -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-```
-
-### Theme Selection Guide
-
-**CRITICAL**: Choose the theme color that best matches the app's purpose and domain.
-
-**Selection Logic:**
-
-Based on **{{PROJECT_TITLE}}** and **{{PROJECT_DESCRIPTION}}**, select ONE theme:
-
-- **Zinc** (default neutral): General-purpose apps, dashboards, admin panels, productivity tools, SaaS platforms
-- **Slate**: Developer tools, code editors, technical documentation, API platforms
-- **Stone**: Content management, blogs, publishing platforms, reading apps
-- **Gray**: Minimal apps, calculators, converters, utility tools
-- **Neutral**: Business apps, CRM, analytics, professional tools
-
-- **Red**: Alerts, monitoring, security, emergency services, critical systems
-- **Rose**: Dating apps, social platforms, creative tools, design apps
-- **Orange**: Food delivery, restaurants, energy/fitness, enthusiasm-focused apps
-- **Green**: Finance, health, eco/sustainability, growth/success apps, money management
-- **Blue**: Communication, productivity, trust-focused apps, corporate tools, social networks
-- **Yellow**: Learning platforms, education, optimism-focused, note-taking, highlights
-- **Violet**: Creative tools, music apps, luxury brands, premium services, meditation
-
-**Implementation:**
-
-Add the selected theme class to `<html>` tag:
-
-```html
-<!-- For Green theme (finance/health app) -->
-<html lang="en" class="theme-green">
-
-<!-- For Blue theme (productivity app) -->
-<html lang="en" class="theme-blue">
-
-<!-- For default Zinc (general app) -->
-<html lang="en">
-```
-
-**Example Selections:**
-- "Budget Tracker" → **Green** (finance)
-- "Task Manager" → **Blue** (productivity)
-- "Recipe Finder" → **Orange** (food)
-- "Meditation Timer" → **Violet** (wellness/calm)
-- "Code Snippet Manager" → **Slate** (developer tool)
-- "Habit Tracker" → **Green** (health/growth)
-- "Dating App" → **Rose** (social/romance)
-- "Learning Platform" → **Yellow** (education)
-- "Admin Dashboard" → **Zinc** (neutral/professional)
-
-### Component Styling Pattern
-
-**ALWAYS use semantic tokens, NEVER hardcoded colors:**
-
-```tsx
-// ✅ CORRECT
-<button className="bg-primary text-primary-foreground hover:bg-primary/90">
-  Click me
-</button>
-
-<input className="bg-background border-input focus:ring-ring" />
-
-<div className="bg-card text-card-foreground border-border">
-  Card content
-</div>
-
-// ❌ WRONG
-<button className="bg-black text-white">Click me</button>
-<input className="bg-white border-gray-300" />
-<div className="bg-white text-gray-900 border-gray-200">Card</div>
-```
-
-### Icon Usage Guidelines
-- Use Lucide icons throughout for consistency
-- Minimum icon size: 20px (h-5 w-5)
-- Interactive icons: 24px (h-6 w-6)
-- Always include `aria-label` on icon-only buttons
-
 ---
+
 
 ## 📱 Mobile Optimization & PWA
 
@@ -698,48 +266,6 @@ import { Github } from "lucide-react";
 
 ---
 
-## 🏛️ Architecture Principles
-
-### Code Organization
-```
-src/
-├── components/
-│   ├── ui/           # Reusable UI primitives
-│   ├── layout/       # Layout components (Header, Footer)
-│   └── features/     # Feature-specific components
-├── hooks/            # Custom React hooks
-├── lib/              # Utility functions
-├── pages/            # Route pages
-├── types/            # TypeScript types
-└── config/           # Configuration files
-```
-
-### Design Principles
-1. **Modular**: Each component has single responsibility
-2. **Composable**: Components accept props for customization
-3. **Scalable**: Easy to add features without refactoring
-4. **Type-Safe**: Full TypeScript coverage with strict mode
-5. **DRY**: Don't Repeat Yourself - extract reusable logic
-
-### Component Template
-```tsx
-import { FC } from 'react';
-
-interface ComponentNameProps {
-  // Props with JSDoc comments
-}
-
-export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
-  return (
-    <div>
-      {/* Component implementation */}
-    </div>
-  );
-};
-```
-
----
-
 ## 📦 GitHub Repository Setup
 
 ### Repository Configuration
@@ -760,10 +286,6 @@ export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
 
 ## 🚀 Features
 
-- Feature 1
-- Feature 2
-- Feature 3
-
 ## 📸 Screenshot
 
 ![App Screenshot](./public/og-image.png)
@@ -783,42 +305,9 @@ export const ComponentName: FC<ComponentNameProps> = ({ ...props }) => {
 Before deploying, verify:
 
 ### Data & Implementation
-- [ ] Using real data sources (Supabase or localStorage)
 - [ ] NO mock data arrays or hardcoded placeholders
 - [ ] NO setTimeout API simulations
 - [ ] NO TODO comments or stub functions
-- [ ] All features fully implemented
-- [ ] Loading states and error handling present
-
-### Configuration
-- [ ] All config centralized in src/config/ directory
-- [ ] Environment variables in src/config/env.ts
-- [ ] Constants in src/config/constants.ts
-- [ ] .env.example created and documented
-- [ ] .env.local in .gitignore
-- [ ] Runtime validation for required env vars
-- [ ] NO hardcoded API keys or secrets
-
-### Database & Auth (if applicable)
-- [ ] Supabase client initialized in src/config/supabase.ts
-- [ ] Authentication hook implemented (useAuth)
-- [ ] Database queries use real Supabase calls
-- [ ] Row Level Security (RLS) configured in Supabase
-- [ ] User setup instructions in README
-
-### Code Quality
-- [ ] TypeScript strict mode enabled, no errors
-- [ ] All components have proper TypeScript types
-- [ ] ESLint passes with no warnings
-- [ ] No console.logs in production code
-
-### Design & UX
-- [ ] Inter Tight font loaded and applied
-- [ ] Monokai theme colors implemented
-- [ ] All icons from Lucide React
-- [ ] Mobile responsive (test on 375px, 768px, 1024px)
-- [ ] Touch targets minimum 44px
-- [ ] Active states on all interactive elements
 
 ### Accessibility
 - [ ] All buttons have aria-labels
@@ -856,21 +345,3 @@ Before deploying, verify:
 
 ### Social Links
 - [ ] Footer with GitHub/Twitter links implemented
-
----
-
-## 🎯 Project-Specific Instructions
-
-{{PROJECT_SPECIFIC_INSTRUCTIONS}}
-
----
-
-## 📚 Additional Resources
-
-- **Supabase**: https://supabase.com (Database, Auth, Storage)
-- **Supabase Docs**: https://supabase.com/docs
-- **Lucide Icons**: https://lucide.dev
-- **shadcn/ui**: https://ui.shadcn.com
-- **TailwindCSS**: https://tailwindcss.com
-- **Inter Tight Font**: https://fonts.google.com/specimen/Inter+Tight
-- **Core Web Vitals**: https://web.dev/vitals
