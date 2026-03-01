@@ -1,37 +1,31 @@
-# VibeCoding Prompt Generator (Web)
+# Vibecode Prompt Generator (VCPG)
 
-Simple web app to generate vibecoding prompts. No CLI needed.
-
-## Run Locally
-
-```bash
-# Any static server
-python3 -m http.server 8000
-# or
-npx serve
-```
-
-Open `http://localhost:8000`
-
-## Deploy
-
-Upload to:
-- Netlify (drag & drop)
-- Vercel
-- GitHub Pages
-- Any static host
-
-## Files
-
-- `index.html` - Form UI
-- `app.js` - Template generation logic
-- `template.md` - Master template (copy from vibecoded)
-
-## Usage
-
-1. Fill form
-2. Click "Generate Prompt"
-3. Copy to clipboard
-4. Paste into v0/Lovable/Bolt/etc
+1. Go to > **https://vcpg.vercel.app**
+2. Fill in details
+3. Click > **"Generate Prompt"**
+4. **Copy** to clipboard
+5. **Paste** into v0/Lovable/Bolt/etc
 
 Done.
+
+--
+
+## Vibecoding platforms
+- [v0](https://v0.app)
+- [Lovable](https://lovable.dev)
+- Bolt.new
+- Reflex.dev
+- Base44
+- Orchids
+- Anything.new
+- Emergent.sh
+- Blink.new
+- Floot.app
+- Google AI Studio
+- MGX.dev
+- Builder.io
+- Leap
+- Rork.app
+- Vibecodeapp
+- Libra.dev
+- [Cloudflare Build](https://build.cloudflare.dev/)
